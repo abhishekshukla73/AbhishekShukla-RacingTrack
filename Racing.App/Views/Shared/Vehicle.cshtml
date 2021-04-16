@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Racing.Model.Vehicle>
+
+<table class="table">
+    <tr>
+        <th scope="col">
+            Vehicle Type
+        </th>
+        <th scope="col">
+            Vehicle Name
+        </th>
+        <th scope="col">
+            Tow
+        </th>
+        <th scope="col">
+            Lift
+        </th>
+        <th scope="col">
+            Tire
+        </th>
+        <th scope="col">
+            Image
+        </th>
+        <th scope="col">
+            Date
+        </th>
+        <th scope="col">
+            Action
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.isTow)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Lift)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tire)
+    </td>
+    <td>
+        <img src="/Content/images/@Url.Content(item.Image==null?"car.jpg":item.Image)" alt="Image" height="110px" width="110px" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedDate)
+    </td>
+    <td>
+        <input type="button" class="btn btn-danger" onclick="RemoveVehicle('@item.Id')" value="Delete" />
+    </td>
+</tr>}
+
+</table>
+

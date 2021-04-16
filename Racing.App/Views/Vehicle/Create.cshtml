@@ -1,0 +1,87 @@
+﻿
+@model Racing.App.Models.VehicleDto
+@{ ViewBag.Title = "Add Vehicle";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h2>Add Vehicle</h2>
+&nbsp;&nbsp;
+<div>
+    @if (!string.IsNullOrEmpty(ViewBag.Success))
+    {
+<p class="warning alert-success alert">
+    @ViewBag.Success
+</p>}
+</div>
+@using (Html.BeginForm("Create", "Vehicle", FormMethod.Post, new
+{
+    enctype = "multipart/form-data"
+}))
+{
+@Html.AntiForgeryToken()
+                <div class="bg-danger">
+                    @Html.ValidationMessageFor(model => model.ResponseMessage, "", new { @class = "text-danger" })
+                </div>
+                                <div><br /></div>
+                                                <div class="form-horizontal">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group col-lg-5">
+                                                            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                            <div class="col-md-8">
+                                                                @Html.DropDownListFor(m => m.Type,
+                                                                                                 new SelectList(Enum.GetValues(typeof(Racing.Model.VehicleType))),
+                                                                                                  new { @class = "form-control" })
+
+                                                                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                            <div class="col-md-8">
+                                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control " } })
+                                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                            @Html.LabelFor(model => model.isTow, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                            <div class="col-md-8">
+                                                                @Html.CheckBoxFor(m => m.isTow, new { htmlAttributes = new { @class = "form-check-input" } })
+                                                                @Html.ValidationMessageFor(model => model.isTow, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group col-lg-5">
+                                                            @Html.LabelFor(model => model.Lift, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                            <div class="col-md-8">
+                                                                @Html.TextBoxFor(m => m.Lift, null, new { type = "number", @required = "required", @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.Lift, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-lg-4">
+                                                            @Html.LabelFor(model => model.Tire, htmlAttributes: new { @class = "control-label col-md-3 " })
+                                                            <div class="col-md-8">
+                                                                @Html.TextBoxFor(m => m.Tire, null, new { type = "number", @required = "required", @class = "form-control" })
+                                                                @Html.ValidationMessageFor(model => model.Tire, "", new { @class = "text-danger" })
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-lg-3">
+                                                            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-3" })
+                                                            <div class="col-md-8">
+                                                                <input type="file" name="ImageFile" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group col-sm-2 col-sm-push-10">
+                                                            <input type="submit" value="Add Vehicle" class="btn btn-success " />
+                                                        </div>
+                                                        <div class="form-group pull-right">
+                                                            <input type="reset" value="Reset" class="btn btn-primary" />
+                                                        </div>
+                                                    </div>
+                                                </div>}
+
+
+
+
